@@ -33,7 +33,7 @@
 
 Este projeto foi desenvolvido utilizando tecnologias modernas e ferramentas robustas, tanto no Front-End quanto no Back-End, visando garantir desempenho, escalabilidade e facilidade de manutenção.
 
-## Front-End
+## Sobre o Projeto Front-End
 
 Para o desenvolvimento do Front-End, foram utilizadas as seguintes tecnologias:
 
@@ -47,7 +47,7 @@ Para o desenvolvimento do Front-End, foram utilizadas as seguintes tecnologias:
 - **Frameworks**:
   - **Vite + ReactJS**: Utilizado para construir uma aplicação modular, rápida e eficiente. Vite oferece um ambiente de desenvolvimento ágil, enquanto ReactJS possibilita a criação de componentes reutilizáveis e a construção de interfaces de usuário interativas.
 
-## Back-End
+## Sobre o Projeto Back-End
 
 O Back-End foi desenvolvido utilizando tecnologias robustas que permitem a construção de uma API segura e escalável:
 
