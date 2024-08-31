@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS web.pesquisa (
     id_orgao BIGINT NOT NULL,            -- Chave estrangeira referenciando a tabela orgao
                                          -- Tamanho: 8 bytes por registro (BIGINT)
 
-    data_pesquisa DATE DEFAULT CURRENT_DATE,  -- Data da pesquisa, com valor padrão a data atual
+    data_realizacao DATE DEFAULT CURRENT_DATE NOT NULL,  -- Data da pesquisa, com valor padrão a data atual
                                               -- Tamanho: 4 bytes por registro (DATE)
 
     data_ini DATE NOT NULL,              -- Data de início da pesquisa

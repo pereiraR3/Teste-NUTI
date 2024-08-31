@@ -127,22 +127,19 @@ CREATE SCHEMA IF NOT EXISTS web;
 
 -- Tabela Órgãos
 CREATE TABLE IF NOT EXISTS web.orgao (
-    id BIGSERIAL NOT NULL,           -- Chave primária com autoincremento
-                                     -- Tamanho: 8 bytes por registro
+    id BIGSERIAL NOT NULL,             -- Chave primária com autoincremento
+                                       -- Tamanho: 8 bytes por registro
 
-    nome VARCHAR(255) NOT NULL,      -- Nome do órgão, até 255 caracteres
-                                     -- Tamanho estimado: ~100 bytes por registro (assumindo uma média de 100 caracteres)
-
-    cnpj VARCHAR(255) UNIQUE NOT NULL, -- CNPJ, campo único, até 255 caracteres
+    cnpj VARCHAR(14) UNIQUE NOT NULL, -- CNPJ, campo único, até 14 caracteres
                                        -- Tamanho fixo: 14 bytes por registro (CNPJ possui 14 caracteres)
                                        -- Índice UNIQUE no CNPJ: ~14 bytes adicionais por registro
 
     CONSTRAINT pk_id_in_orgao PRIMARY KEY (id)
 );
 
--- Estimativa de tamanho total por registro: ~136 bytes
+-- Estimativa de tamanho total por registro: ~36 bytes
 -- Considerando 1.000.000 registros:
--- Tamanho total estimado da tabela: ~136 MB
+-- Tamanho total estimado da tabela: ~36 MB
 
 ---------
 
@@ -154,7 +151,7 @@ CREATE TABLE IF NOT EXISTS web.pesquisa (
     id_orgao BIGINT NOT NULL,            -- Chave estrangeira referenciando a tabela orgao
                                          -- Tamanho: 8 bytes por registro (BIGINT)
 
-    data_pesquisa DATE DEFAULT CURRENT_DATE,  -- Data da pesquisa, com valor padrão a data atual
+    data_realizacao DATE DEFAULT CURRENT_DATE NOT NULL,  -- Data da pesquisa, com valor padrão a data atual
                                               -- Tamanho: 4 bytes por registro (DATE)
 
     data_ini DATE NOT NULL,              -- Data de início da pesquisa

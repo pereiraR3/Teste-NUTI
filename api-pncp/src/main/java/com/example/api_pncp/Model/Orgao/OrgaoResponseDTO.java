@@ -8,7 +8,7 @@ package com.example.api_pncp.Model.Orgao;
 public record OrgaoResponseDTO(
 
     Long id, 
-    String nome
+    String cnpj
 
 ) {
 } 

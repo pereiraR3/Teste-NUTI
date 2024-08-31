@@ -14,7 +14,7 @@ public record PesquisaResponseDTO (
 
     Long id, 
     OrgaoResponseDTO orgao,
-    Double valor_total
+    Double valorTotal
 
 ) {
     
