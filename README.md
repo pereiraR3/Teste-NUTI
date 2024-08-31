@@ -33,7 +33,7 @@
 
 Este projeto foi desenvolvido utilizando tecnologias modernas e ferramentas robustas, tanto no Front-End quanto no Back-End, visando garantir desempenho, escalabilidade e facilidade de manutenção.
 
-## Sobre o Projeto Front-End
+## Front-End
 
 Para o desenvolvimento do Front-End, foram utilizadas as seguintes tecnologias:
 
@@ -47,7 +47,7 @@ Para o desenvolvimento do Front-End, foram utilizadas as seguintes tecnologias:
 - **Frameworks**:
   - **Vite + ReactJS**: Utilizado para construir uma aplicação modular, rápida e eficiente. Vite oferece um ambiente de desenvolvimento ágil, enquanto ReactJS possibilita a criação de componentes reutilizáveis e a construção de interfaces de usuário interativas.
 
-## Sobre o Projeto Back-End
+## Back-End
 
 O Back-End foi desenvolvido utilizando tecnologias robustas que permitem a construção de uma API segura e escalável:
 
@@ -57,13 +57,13 @@ O Back-End foi desenvolvido utilizando tecnologias robustas que permitem a const
 - **Frameworks**:
   - **Spring Boot**: Framework que facilita o desenvolvimento de aplicações Java, proporcionando um ambiente simplificado para a configuração e implementação de APIs RESTful, além de oferecer suporte a diversas funcionalidades, como segurança e persistência de dados.
 
-# Front-End
+# Sobre o Projeto Front-End
 
 
 
 
 
-# Back-End
+# Sobre o Projeto Back-End
 Abaixo está tudo relativo ao Back-End da aplicação, que foi feito para implementar a parte de persistência de dados do teste prático.
 
 ## Modelagem Conceitual
