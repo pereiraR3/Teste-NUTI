@@ -1,7 +1,61 @@
 
-# Requisitos Funcionais
+# Requisitos Funcionais - Obrigatórios
+
+1. **Consumo da API do PNCP**:
+   - Implementar a funcionalidade que consome a API REST do Portal Nacional de Contratações Públicas (PNCP) para obter informações sobre contratos.
+   - A busca deve ser realizada utilizando o CNPJ de um órgão público e um intervalo de datas (data inicial e final).
+
+2. **Exibição das Informações do Órgão**:
+   - Exibir na página web as informações detalhadas do órgão público associado ao CNPJ fornecido.
+   
+3. **Listagem de Contratos**:
+   - Listar todos os contratos do órgão que possuem a data de início de vigência dentro do período especificado.
+   - Para cada contrato listado, devem ser exibidos os seguintes detalhes:
+     - Data de vigência inicial.
+     - Data de vigência final.
+     - Razão social do fornecedor.
+     - Objeto do contrato.
+     - Valor inicial do contrato.
+
+4. **Cálculo e Exibição do Valor Total**:
+   - Calcular e exibir o valor total somado de todos os contratos obtidos dentro do período especificado.
+
+5. **Armazenamento em Banco de Dados**:
+   - Inserir todas as informações coletadas dos contratos e do órgão em um banco de dados para posterior consulta.
+
+6. **Documentação e Comentários**:
+   - Comentar o código-fonte de forma a garantir uma fácil compreensão por parte dos avaliadores.
+
+7. **Entrega e Envio**:
+   - Enviar o código desenvolvido junto com screenshots da aplicação para o e-mail especificado até a data limite de 02/09/2024.
 
 # Requisitos Não Funcionais
+
+Este projeto foi desenvolvido utilizando tecnologias modernas e ferramentas robustas, tanto no Front-End quanto no Back-End, visando garantir desempenho, escalabilidade e facilidade de manutenção.
+
+## Front-End
+
+Para o desenvolvimento do Front-End, foram utilizadas as seguintes tecnologias:
+
+- **Linguagem de Programação**:
+  - **JavaScript**: A linguagem principal para o desenvolvimento das funcionalidades dinâmicas da interface.
+
+- **Linguagens de Marcação e Estilo**:
+  - **HTML5**: Para a estruturação semântica do conteúdo das páginas.
+  - **CSS3**: Para a estilização visual e responsividade da interface.
+
+- **Frameworks**:
+  - **Vite + ReactJS**: Utilizado para construir uma aplicação modular, rápida e eficiente. Vite oferece um ambiente de desenvolvimento ágil, enquanto ReactJS possibilita a criação de componentes reutilizáveis e a construção de interfaces de usuário interativas.
+
+## Back-End
+
+O Back-End foi desenvolvido utilizando tecnologias robustas que permitem a construção de uma API segura e escalável:
+
+- **Linguagem de Programação**:
+  - **Java**: Linguagem amplamente utilizada para o desenvolvimento de aplicações corporativas, conhecida por sua robustez e capacidade de escalabilidade.
+
+- **Frameworks**:
+  - **Spring Boot**: Framework que facilita o desenvolvimento de aplicações Java, proporcionando um ambiente simplificado para a configuração e implementação de APIs RESTful, além de oferecer suporte a diversas funcionalidades, como segurança e persistência de dados.
 
 # Front-End
 
