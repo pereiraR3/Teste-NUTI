@@ -1,0 +1,12 @@
+/* Estilo padrão para telas maiores */
+.clip-desktop {
+    clip-path: inset(0 0 40% 0);
+  }
+  
+  /* Estilo para telas menores (celulares) */
+  @media (max-width: 768px) {
+    .clip-desktop {
+      clip-path: inset(0 0 20% 0);
+    }
+  }
+  

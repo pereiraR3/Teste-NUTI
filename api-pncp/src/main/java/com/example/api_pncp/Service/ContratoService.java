@@ -12,7 +12,7 @@ import com.example.api_pncp.Model.Orgao.Orgao;
 import com.example.api_pncp.Model.Pesquisa.Pesquisa;
 import com.example.api_pncp.Model.Pesquisa.PesquisaRequestDTO;
 import com.example.api_pncp.Model.Pesquisa.PesquisaResponseDTO;
-import com.example.api_pncp.Repository.PesquisaRepository;
+import com.example.api_pncp.Repository.ContratoRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -23,7 +23,7 @@ public class PesquisaService {
     private OrgaoService orgaoService;
 
     @Autowired
-    private PesquisaRepository pesquisaRepository;
+    private ContratoRepository contratoRepository;
 
     /**
      * Cria uma nova pesquisa e a persiste no banco de dados.
@@ -41,7 +41,7 @@ public class PesquisaService {
         Pesquisa pesquisa = new Pesquisa(request, orgao);
 
         // Salva a nova pesquisa no banco de dados
-        pesquisaRepository.save(pesquisa);
+        contratoRepository.save(pesquisa);
 
         // Retorna os dados da pesquisa em um DTO de resposta
         return new PesquisaResponseDTO(pesquisa);
@@ -58,7 +58,7 @@ public class PesquisaService {
     public Pesquisa findByIdPesquisa(Long id) {
 
         // Tenta encontrar a pesquisa pelo ID. Se não encontrar, lança uma exceção de status 404.
-        return pesquisaRepository.findById(id)
+        return contratoRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pesquisa não encontrada"));
 
     }
@@ -71,7 +71,7 @@ public class PesquisaService {
     public List<PesquisaResponseDTO> findAllPesquisas() {
 
         // Encontra todas as pesquisas e as converte para uma lista de DTOs de resposta
-        return pesquisaRepository.findAll()
+        return contratoRepository.findAll()
             .stream().map(PesquisaResponseDTO::new).collect(Collectors.toList());
 
     }
@@ -86,7 +86,7 @@ public class PesquisaService {
 
         // Busca a pesquisa pelo ID. Se encontrada, a exclui do banco de dados.
         Pesquisa pesquisa = findByIdPesquisa(id);
-        pesquisaRepository.delete(pesquisa);
+        contratoRepository.delete(pesquisa);
 
     }
 

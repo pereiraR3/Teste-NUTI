@@ -15,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.api_pncp.Model.Pesquisa.PesquisaRequestDTO;
 import com.example.api_pncp.Model.Pesquisa.PesquisaResponseDTO;
-import com.example.api_pncp.Service.PesquisaService;
+import com.example.api_pncp.Service.ContratoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -28,10 +28,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @RestController
 @RequestMapping("/pesquisa")
 @Tag(name = "Pesquisa", description = "Endpoints relacionados às pesquisas")
-public class PesquisaController {
+public class ContratoController {
     
     @Autowired
-    private PesquisaService pesquisaService;
+    private ContratoService contratoService;
 
     @PostMapping("/create")
     @Operation(summary = "Cria uma nova pesquisa", description = "Cria uma nova pesquisa com os dados fornecidos")
@@ -47,7 +47,7 @@ public class PesquisaController {
         @Parameter(description = "Dados para criação da nova pesquisa", required = true) PesquisaRequestDTO request,
         UriComponentsBuilder uriBuilder
     ) {
-        PesquisaResponseDTO response = pesquisaService.createPesquisa(request);  
+        PesquisaResponseDTO response = contratoService.createPesquisa(request);
         var uri = uriBuilder.path("/pesquisa/{id}").buildAndExpand(response.id()).toUri();
         return ResponseEntity.created(uri).body(response);
     }
@@ -64,7 +64,7 @@ public class PesquisaController {
     public ResponseEntity<PesquisaResponseDTO> findById(
         @PathVariable 
         @Parameter(description = "ID da pesquisa a ser buscada", required = true) Long id) {
-        PesquisaResponseDTO response = new PesquisaResponseDTO(pesquisaService.findByIdPesquisa(id));
+        PesquisaResponseDTO response = new PesquisaResponseDTO(contratoService.findByIdPesquisa(id));
         return ResponseEntity.ok().body(response);
     }
     
@@ -78,7 +78,7 @@ public class PesquisaController {
                      content = @Content)
     })
     public ResponseEntity<List<PesquisaResponseDTO>> findAll() {
-        List<PesquisaResponseDTO> listOrgaos = pesquisaService.findAllPesquisas();
+        List<PesquisaResponseDTO> listOrgaos = contratoService.findAllPesquisas();
         if(listOrgaos.isEmpty())   
             return ResponseEntity.noContent().build();
         return ResponseEntity.ok().body(listOrgaos);
@@ -95,7 +95,7 @@ public class PesquisaController {
     public ResponseEntity<Void> delete(
         @PathVariable 
         @Parameter(description = "ID da pesquisa a ser deletada", required = true) Long id) {
-        pesquisaService.deletePesquisa(id);
+        contratoService.deletePesquisa(id);
         return ResponseEntity.noContent().build();
     }
 }
