@@ -3,22 +3,23 @@ package com.example.api_pncp.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.api_pncp.Model.Contrato.Contrato;
+import com.example.api_pncp.Model.Contrato.ContratoRequestDTO;
+import com.example.api_pncp.Model.Contrato.ContratoResponseDTO;
+import com.example.api_pncp.Model.Orgao.Orgao;
+import com.example.api_pncp.Repository.ContratoRepository;
+import com.example.api_pncp.Service.OrgaoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.api_pncp.Model.Orgao.Orgao;
-import com.example.api_pncp.Model.Pesquisa.Pesquisa;
-import com.example.api_pncp.Model.Pesquisa.PesquisaRequestDTO;
-import com.example.api_pncp.Model.Pesquisa.PesquisaResponseDTO;
-import com.example.api_pncp.Repository.ContratoRepository;
-
 import jakarta.transaction.Transactional;
 
 @Service
-public class PesquisaService {
-    
+public class ContratoService {
+
     @Autowired
     private OrgaoService orgaoService;
 
@@ -26,68 +27,63 @@ public class PesquisaService {
     private ContratoRepository contratoRepository;
 
     /**
-     * Cria uma nova pesquisa e a persiste no banco de dados.
-     * 
-     * @param request Objeto DTO que contém os dados necessários para criar uma nova pesquisa.
-     * @return PesquisaResponseDTO contendo os dados da pesquisa recém-criada.
+     * Cria um novo contrato e o persiste no banco de dados.
+     *
+     * @param request Objeto DTO que contém os dados necessários para criar um novo contrato.
+     * @return ContratoResponseDTO contendo os dados do contrato recém-criado.
      */
     @Transactional
-    public PesquisaResponseDTO createPesquisa(PesquisaRequestDTO request) {
+    public ContratoResponseDTO createContrato(ContratoRequestDTO request) {
 
-        // Encontra o órgão relacionado à pesquisa pelo ID
+        // Encontra o órgão relacionado ao contrato pelo ID
         Orgao orgao = orgaoService.findByIdOrgao(request.idOrgao());
 
-        // Cria uma nova instância de Pesquisa com os dados fornecidos
-        Pesquisa pesquisa = new Pesquisa(request, orgao);
+        // Cria uma nova instância de Contrato com os dados fornecidos
+        Contrato contrato = new Contrato(request, orgao);
 
-        // Salva a nova pesquisa no banco de dados
-        contratoRepository.save(pesquisa);
+        // Salva o novo contrato no banco de dados
+        contratoRepository.save(contrato);
 
-        // Retorna os dados da pesquisa em um DTO de resposta
-        return new PesquisaResponseDTO(pesquisa);
-
+        // Retorna os dados do contrato em um DTO de resposta
+        return new ContratoResponseDTO(contrato);
     }
 
     /**
-     * Busca uma pesquisa pelo seu ID.
-     * 
-     * @param id O ID da pesquisa a ser encontrada.
-     * @return Pesquisa encontrada com o ID fornecido.
-     * @throws ResponseStatusException se a pesquisa não for encontrada.
+     * Busca um contrato pelo seu ID.
+     *
+     * @param id O ID do contrato a ser encontrado.
+     * @return Contrato encontrado com o ID fornecido.
+     * @throws ResponseStatusException se o contrato não for encontrado.
      */
-    public Pesquisa findByIdPesquisa(Long id) {
+    public Contrato findByIdContrato(Long id) {
 
-        // Tenta encontrar a pesquisa pelo ID. Se não encontrar, lança uma exceção de status 404.
+        // Tenta encontrar o contrato pelo ID. Se não encontrar, lança uma exceção de status 404.
         return contratoRepository.findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pesquisa não encontrada"));
-
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contrato não encontrado"));
     }
 
     /**
-     * Busca todas as pesquisas no banco de dados.
-     * 
-     * @return Uma lista de PesquisaResponseDTO contendo os dados de todas as pesquisas.
+     * Busca todos os contratos no banco de dados.
+     *
+     * @return Uma lista de ContratoResponseDTO contendo os dados de todos os contratos.
      */
-    public List<PesquisaResponseDTO> findAllPesquisas() {
+    public List<ContratoResponseDTO> findAllContratos() {
 
-        // Encontra todas as pesquisas e as converte para uma lista de DTOs de resposta
+        // Encontra todos os contratos e os converte para uma lista de DTOs de resposta
         return contratoRepository.findAll()
-            .stream().map(PesquisaResponseDTO::new).collect(Collectors.toList());
-
+                .stream().map(ContratoResponseDTO::new).collect(Collectors.toList());
     }
 
     /**
-     * Exclui uma pesquisa pelo seu ID.
-     * 
-     * @param id O ID da pesquisa a ser excluída.
+     * Exclui um contrato pelo seu ID.
+     *
+     * @param id O ID do contrato a ser excluído.
      */
     @Transactional
-    public void deletePesquisa(Long id) {
+    public void deleteContrato(Long id) {
 
-        // Busca a pesquisa pelo ID. Se encontrada, a exclui do banco de dados.
-        Pesquisa pesquisa = findByIdPesquisa(id);
-        contratoRepository.delete(pesquisa);
-
+        // Busca o contrato pelo ID. Se encontrado, o exclui do banco de dados.
+        Contrato contrato = findByIdContrato(id);
+        contratoRepository.delete(contrato);
     }
-
 }

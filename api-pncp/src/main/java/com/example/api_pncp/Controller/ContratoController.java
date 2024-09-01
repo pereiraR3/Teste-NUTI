@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.api_pncp.Model.Pesquisa.PesquisaRequestDTO;
-import com.example.api_pncp.Model.Pesquisa.PesquisaResponseDTO;
+import com.example.api_pncp.Model.Contrato.ContratoRequestDTO;
+import com.example.api_pncp.Model.Contrato.ContratoResponseDTO;
 import com.example.api_pncp.Service.ContratoService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,76 +26,76 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
-@RequestMapping("/pesquisa")
-@Tag(name = "Pesquisa", description = "Endpoints relacionados às pesquisas")
+@RequestMapping("/contrato")
+@Tag(name = "Contrato", description = "Endpoints relacionados aos contratos")
 public class ContratoController {
-    
+
     @Autowired
     private ContratoService contratoService;
 
     @PostMapping("/create")
-    @Operation(summary = "Cria uma nova pesquisa", description = "Cria uma nova pesquisa com os dados fornecidos")
+    @Operation(summary = "Cria um novo contrato", description = "Cria um novo contrato com os dados fornecidos")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Pesquisa criada com sucesso", 
-                     content = @Content(mediaType = "application/json", 
-                     schema = @Schema(implementation = PesquisaResponseDTO.class))),
-        @ApiResponse(responseCode = "400", description = "Dados inválidos", 
-                     content = @Content)
+            @ApiResponse(responseCode = "201", description = "Contrato criado com sucesso",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ContratoResponseDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Dados inválidos",
+                    content = @Content)
     })
-    public ResponseEntity<PesquisaResponseDTO> create(
-        @RequestBody 
-        @Parameter(description = "Dados para criação da nova pesquisa", required = true) PesquisaRequestDTO request,
-        UriComponentsBuilder uriBuilder
+    public ResponseEntity<ContratoResponseDTO> create(
+            @RequestBody
+            @Parameter(description = "Dados para criação do novo contrato", required = true) ContratoRequestDTO request,
+            UriComponentsBuilder uriBuilder
     ) {
-        PesquisaResponseDTO response = contratoService.createPesquisa(request);
-        var uri = uriBuilder.path("/pesquisa/{id}").buildAndExpand(response.id()).toUri();
+        ContratoResponseDTO response = contratoService.createContrato(request);
+        var uri = uriBuilder.path("/contrato/{id}").buildAndExpand(response.id()).toUri();
         return ResponseEntity.created(uri).body(response);
     }
-    
+
     @GetMapping("/{id}")
-    @Operation(summary = "Busca uma pesquisa pelo ID", description = "Retorna os dados de uma pesquisa específica pelo ID")
+    @Operation(summary = "Busca um contrato pelo ID", description = "Retorna os dados de um contrato específico pelo ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Pesquisa encontrada", 
-                     content = @Content(mediaType = "application/json", 
-                     schema = @Schema(implementation = PesquisaResponseDTO.class))),
-        @ApiResponse(responseCode = "404", description = "Pesquisa não encontrada", 
-                     content = @Content)
+            @ApiResponse(responseCode = "200", description = "Contrato encontrado",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ContratoResponseDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Contrato não encontrado",
+                    content = @Content)
     })
-    public ResponseEntity<PesquisaResponseDTO> findById(
-        @PathVariable 
-        @Parameter(description = "ID da pesquisa a ser buscada", required = true) Long id) {
-        PesquisaResponseDTO response = new PesquisaResponseDTO(contratoService.findByIdPesquisa(id));
+    public ResponseEntity<ContratoResponseDTO> findById(
+            @PathVariable
+            @Parameter(description = "ID do contrato a ser buscado", required = true) Long id) {
+        ContratoResponseDTO response = new ContratoResponseDTO(contratoService.findByIdContrato(id));
         return ResponseEntity.ok().body(response);
     }
-    
+
     @GetMapping("/findAll")
-    @Operation(summary = "Busca todas as pesquisas", description = "Retorna uma lista de todas as pesquisas")
+    @Operation(summary = "Busca todos os contratos", description = "Retorna uma lista de todos os contratos")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Lista de pesquisas encontrada", 
-                     content = @Content(mediaType = "application/json", 
-                     schema = @Schema(implementation = PesquisaResponseDTO.class))),
-        @ApiResponse(responseCode = "204", description = "Nenhuma pesquisa encontrada", 
-                     content = @Content)
+            @ApiResponse(responseCode = "200", description = "Lista de contratos encontrada",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ContratoResponseDTO.class))),
+            @ApiResponse(responseCode = "204", description = "Nenhum contrato encontrado",
+                    content = @Content)
     })
-    public ResponseEntity<List<PesquisaResponseDTO>> findAll() {
-        List<PesquisaResponseDTO> listOrgaos = contratoService.findAllPesquisas();
-        if(listOrgaos.isEmpty())   
+    public ResponseEntity<List<ContratoResponseDTO>> findAll() {
+        List<ContratoResponseDTO> listContratos = contratoService.findAllContratos();
+        if(listContratos.isEmpty())
             return ResponseEntity.noContent().build();
-        return ResponseEntity.ok().body(listOrgaos);
+        return ResponseEntity.ok().body(listContratos);
     }
-    
+
     @DeleteMapping("/{id}")
-    @Operation(summary = "Deleta uma pesquisa pelo ID", description = "Remove uma pesquisa existente pelo ID")
+    @Operation(summary = "Deleta um contrato pelo ID", description = "Remove um contrato existente pelo ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "204", description = "Pesquisa deletada com sucesso", 
-                     content = @Content),
-        @ApiResponse(responseCode = "404", description = "Pesquisa não encontrada", 
-                     content = @Content)
+            @ApiResponse(responseCode = "204", description = "Contrato deletado com sucesso",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Contrato não encontrado",
+                    content = @Content)
     })
     public ResponseEntity<Void> delete(
-        @PathVariable 
-        @Parameter(description = "ID da pesquisa a ser deletada", required = true) Long id) {
-        contratoService.deletePesquisa(id);
+            @PathVariable
+            @Parameter(description = "ID do contrato a ser deletado", required = true) Long id) {
+        contratoService.deleteContrato(id);
         return ResponseEntity.noContent().build();
     }
 }
