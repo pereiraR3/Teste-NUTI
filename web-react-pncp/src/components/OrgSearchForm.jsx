@@ -83,7 +83,7 @@ const OrgSearchForm = ({ onSearch, setIsTestLocal }) => {  // Recebe a função 
 
       {/* Título e Formulário */}
       <div>
-        <h1 className="text-3xl lg:text-5xl font-bold text-black mb-8">
+        <h1 className="text-3xl lg:text-5xl font-bold text-black mb-2 mt-8">
           Faça a sua pesquisa com{' '}
           <span className="text-blue-600">Facilidade</span>
         </h1>

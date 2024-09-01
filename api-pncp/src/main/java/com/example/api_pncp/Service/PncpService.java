@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PncpService {
@@ -42,20 +43,33 @@ public class PncpService {
                 .bodyToMono(PncpResponse.class)
                 .block(); // Operação síncrona
 
+        // Verifica se a resposta é nula
+        if (response == null || response.getOrgaoEntidade() == null) {
+            throw new IllegalArgumentException("A resposta da API está vazia ou o órgão não foi encontrado.");
+        }
+
         // Extrai e salva as informações do órgão e seus contratos no banco de dados
-        assert response != null;
         PncpResponse.Orgao orgaoEntidade = response.getOrgaoEntidade();
 
-        // Cria a entidade Orgao e popula com os dados recebidos
-        Orgao orgao = new Orgao();
-        orgao.setCnpj(orgaoEntidade.getCnpj());
-        orgao.setRazaoSocial(orgaoEntidade.getRazaoSocial());
-        orgao.setUfNome(orgaoEntidade.getUfNome());
-        orgao.setNomeUnidade(orgaoEntidade.getNomeUnidade());
-        orgao.setCodigoUnidade(orgaoEntidade.getCodigoUnidade());
-        orgao.setUfSigla(orgaoEntidade.getUfSigla());
-        orgao.setMunicipioNome(orgaoEntidade.getMunicipioNome());
-        orgao.setCodigoIbge(orgaoEntidade.getCodigoIbge());
+        // Verifica se o órgão já existe no banco de dados
+        Optional<Orgao> orgaoOptional = orgaoRepository.findByCnpj(orgaoEntidade.getCnpj());
+        Orgao orgao;
+
+        if (orgaoOptional.isEmpty()) {
+            // Cria a entidade Orgao e popula com os dados recebidos
+            orgao = new Orgao();
+            orgao.setCnpj(orgaoEntidade.getCnpj());
+            orgao.setRazaoSocial(orgaoEntidade.getRazaoSocial());
+            orgao.setUfNome(orgaoEntidade.getUfNome());
+            orgao.setNomeUnidade(orgaoEntidade.getNomeUnidade());
+            orgao.setCodigoUnidade(orgaoEntidade.getCodigoUnidade());
+            orgao.setUfSigla(orgaoEntidade.getUfSigla());
+            orgao.setMunicipioNome(orgaoEntidade.getMunicipioNome());
+            orgao.setCodigoIbge(orgaoEntidade.getCodigoIbge());
+        } else {
+            // Utiliza o órgão existente
+            orgao = orgaoOptional.get();
+        }
 
         // Extrai os contratos e associa ao órgão
         List<Contrato> contratos = response.getContratos().stream().map(contratoResponse -> {
@@ -65,7 +79,7 @@ public class PncpService {
             contrato.setRazaoSocialFornecedor(contratoResponse.getNomeRazaoSocialFornecedor());
             contrato.setObjetoContrato(contratoResponse.getObjetoContrato());
             contrato.setValorInicial(contratoResponse.getValorInicial());
-            contrato.setOrgao(orgao);
+            contrato.setOrgao(orgao);  // Associa o contrato ao órgão
             return contrato;
         }).toList();
 
@@ -73,7 +87,10 @@ public class PncpService {
         orgao.setContratos(contratos);
 
         // Salva o órgão e os contratos no banco de dados
-        return orgaoRepository.save(orgao);
+        orgaoRepository.save(orgao);
+        contratoRepository.saveAll(contratos);
+
+        return orgao;
     }
 
     private void cleanDatabase() {

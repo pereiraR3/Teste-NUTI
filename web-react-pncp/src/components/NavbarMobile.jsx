@@ -24,7 +24,7 @@ const NavbarMobile = ({ navItems, isOpen, toggleMobileNav }) => {
 
             {/* Mobile Navigation Icon */}
             <div onClick={toggleMobileNav} className="cursor-pointer">
-              <AiOutlineMenu size={25} />
+            {isOpen ? <AiOutlineClose size={25} /> : <AiOutlineMenu size={25} />}
             </div>
           </div>
         </nav>
@@ -50,6 +50,10 @@ const NavbarMobile = ({ navItems, isOpen, toggleMobileNav }) => {
                 <li
                   key={item.id}
                   className="p-4 text-sm text-blue-600 cursor-pointer border-b border-gray-200 hover:bg-blue-50 hover:text-blue-800 transition-colors duration-300"
+                  onClick={() => {
+                    if (item.action) item.action(); // Adiciona ação se existir
+                    toggleMobileNav(); // Fecha o menu após clicar
+                  }}
                 >
                   {item.text}
                 </li>

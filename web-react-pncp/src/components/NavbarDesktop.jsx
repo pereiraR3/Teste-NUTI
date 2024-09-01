@@ -26,6 +26,7 @@ const NavbarDesktop = ({ navItems }) => {
               <li
                 key={item.id}
                 className="text-sm text-blue-600 cursor-pointer hover:text-blue-800 transition-colors duration-300"
+                onClick={item.action ? item.action : null} // Adiciona ação se existir
               >
                 {item.text}
               </li>
