@@ -38,13 +38,13 @@ public class PncpController {
     })
     public ResponseEntity<Orgao> getOrgaoAndSave(
             @RequestParam
-            @Parameter(description = "CNPJ do órgão a ser buscado", example = "12345678000195", required = true) String cnpjOrgao,
+            @Parameter(description = "CNPJ do órgão a ser buscado", example = "12345678000195", required = true) String cnpj,
             @RequestParam
             @Parameter(description = "Data inicial do período da pesquisa no formato 'YYYY-MM-DD'", example = "2024-01-01", required = true) String dataInicial,
             @RequestParam
             @Parameter(description = "Data final do período da pesquisa no formato 'YYYY-MM-DD'", example = "2024-12-31", required = true) String dataFinal) {
 
-        Orgao orgao = pncpService.getOrgaoAndSave(cnpjOrgao, dataInicial, dataFinal);
+        Orgao orgao = pncpService.getOrgaoAndSave(cnpj, dataInicial, dataFinal);
         return ResponseEntity.ok(orgao);
     }
 }
