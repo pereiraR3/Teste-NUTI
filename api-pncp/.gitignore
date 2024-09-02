@@ -25,7 +25,7 @@ target/
 *.ipr
 
 # Ignorar o arquivo de propriedades do Spring Boot (produzido para produção)
-api-pncp/src/main/resources/application-prod.properties
+*application-prod.properties
 
 ### NetBeans ###
 /nbproject/private/
