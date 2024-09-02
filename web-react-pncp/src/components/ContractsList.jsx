@@ -40,7 +40,7 @@ const ContractsList = ({ orgao, contracts, totalValue }) => {
                 key={index}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
-                <td className="px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <td className="px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-500">
                   {contract.dataVigenciaIni}
                 </td>
                 <td className="px-2 sm:px-6 py-4">{contract.dataVigenciaFim}</td>
