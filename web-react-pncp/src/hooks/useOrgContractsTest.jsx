@@ -11,7 +11,7 @@ export const useOrgContractsTest = () => {
 
       const apiURL = process.env.REACT_APP_API_URL;
 
-      const response = await axios.get(`${apiURL}/orgao/findAllByCnpjWithContratos/${cnpj}`);
+      const response = await axios.get(`https://backend-nuti.onrender.com/orgao/findAllByCnpjWithContratos/${cnpj}`);
       const data = response.data;
 
       if (data.length > 0) {
