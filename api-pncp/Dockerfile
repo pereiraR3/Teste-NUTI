@@ -8,7 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y openjdk-17-jdk maven
 
 # Copia o código-fonte para o contêiner
-COPY api-pncp .
+COPY ./api-pncp .
 
 # Executa o Maven para construir o projeto sem executar os testes
 RUN mvn clean install -DskipTests
