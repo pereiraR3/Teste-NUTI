@@ -5,7 +5,7 @@ import ContractsList from '../components/ContractsList';
 import ErrorModal from '../components/ErrorModal';
 import SearchExplanaton from '../components/SearchExplanation';
 import { useOrgContracts } from '../hooks/useOrgContracts';
-import { useOrgContractsTest } from '../test/useOrgContractsTest';
+import { useOrgContractsTest } from '../hooks/useOrgContractsTest';
 import HeroSection from '../components/HeroSection';
 import AutoOpenModal from '../components/AutoOpenModal';
 import { ToastContainer } from 'react-toastify';
