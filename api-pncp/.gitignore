@@ -1,10 +1,15 @@
+# Ignorar o arquivo de ajuda
 HELP.md
+
+# Ignorar diretórios target
 target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+# Ignorar o Maven Wrapper jar
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS (Spring Tool Suite) ###
 .apt_generated
 .classpath
 .factorypath
@@ -14,12 +19,13 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
-/application-prod.properties
 
+# Ignorar o arquivo de propriedades do Spring Boot (produzido para produção)
+application-prod.properties
 
 ### NetBeans ###
 /nbproject/private/
