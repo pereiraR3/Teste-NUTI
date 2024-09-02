@@ -93,6 +93,44 @@ A estrutura do banco de dados foi cuidadosamente planejada e implementada utiliz
 
 1. **Clone o repositório:**
   ```bash
+   git clone https://github.com/seu-usuario/web-react-pncp.git
+  ```
+
+2. **Instale as dependências:**
+  ```bash
+    npm install
+  ```
+
+3. **Execute o projeto:**
+  ```bash
+    npm run dev
+  ```
+
+4. **Acesse o aplicativo no navegador:**
+  ```bash
+    http://localhost:5173
+  ```
+
+## Funcionalidades Principais
+
+- **Consulta de Contratos Públicos:** Permite ao usuário visualizar e gerenciar contratos públicos com base no CNPJ do órgão e um período específico.
+- **Pesquisa Eficiente:** Possui uma seção dedicada explicando como realizar pesquisas de forma eficiente, incluindo validações de período e CNPJ.
+- **Responsividade Completa:** Layout adaptado para diferentes tamanhos de tela, garantindo uma navegação suave em dispositivos móveis e desktops.
+- **Navegação Simples e Intuitiva:** Menus de navegação tanto para desktop quanto para mobile, com suporte a rolagem suave para seções específicas da página.
+- **Modal de Avisos:** Modais dinâmicos para exibir avisos e informações adicionais importantes aos usuários.
+
+## Tecnologias Utilizadas
+
+- **React:** Biblioteca JavaScript para construção da interface de usuário.
+- **Tailwind CSS:** Framework CSS utilitário para estilização rápida e responsiva.
+- **React Router:** Para navegação entre as páginas do aplicativo.
+- **React Icons:** Para inclusão de ícones modernos e personalizáveis.
+- **Vite:** Ferramenta de build que proporciona um ambiente de desenvolvimento rápido e eficiente.
+
+## Instruções para Executar o Projeto
+
+1. **Clone o repositório:**
+  ```bash
   git clone https://github.com/seu-usuario/web-react-pncp.git
   ```
 
@@ -113,6 +151,22 @@ A estrutura do banco de dados foi cuidadosamente planejada e implementada utiliz
   ```bash
   http://localhost:5173 
   ```
+
+## Visual do Website
+
+Aqui estão algumas capturas de tela do website:
+
+### Parte 1:
+![Página 1](fotos_app/web01.png)
+
+### Parte 2:
+![Página 2](fotos_app/web02.png)
+
+### Parte 3:
+![Página 3](fotos_app/web03.png)
+
+### Parte 4:
+![Página 4](fotos_app/web04.png)
 
 # Sobre o Projeto Back-End
 Abaixo está tudo relativo ao Back-End da aplicação, que foi feito para implementar a parte de persistência de dados do teste prático.
@@ -270,9 +324,10 @@ CREATE TABLE IF NOT EXISTS contrato (
 
 ## Ferramentas Utilizadas
 
-- **AWS (Amazon Web Services)**:
-  - **EC2 (Elastic Compute Cloud)**: Utilizada para a criação e gerenciamento de instâncias que hospedam o arquivo `.jar` da API, garantindo que a aplicação esteja sempre disponível e acessível.
-  - **RDS (Relational Database Service)**: Configurado para gerenciar o banco de dados PostgreSQL de forma segura e escalável, proporcionando alta disponibilidade e backups automáticos.
+- **Render**:
+  - **Banco de Dados PostgreSQL**: Configuração e gerenciamento de uma instância do PostgreSQL, oferecendo um banco de dados robusto e escalável para armazenar e gerenciar dados da aplicação.
+  - **WebService para API**: Criação de uma instância dedicada para hospedar e executar a API, garantindo alta disponibilidade e performance para as requisições do backend.
 
 - **Vercel**:
-  - **Projeto Frontend**: Utilizado para implantar a aplicação frontend desenvolvida em Vitie + React, proporcionando um ambiente de hospedagem otimizado para projetos JavaScript e frameworks modernos, com suporte a CI/CD para automações de deploy.
+  - **Deploy do Frontend**: Implementação do projeto frontend desenvolvido com Vite e React, utilizando o ambiente de hospedagem da Vercel, que é otimizado para projetos JavaScript modernos. Com suporte integrado para CI/CD, a Vercel automatiza o processo de deploy, facilitando a entrega contínua e atualizações rápidas da aplicação.
+
