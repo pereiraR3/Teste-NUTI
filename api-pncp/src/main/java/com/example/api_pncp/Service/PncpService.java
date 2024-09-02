@@ -95,7 +95,6 @@ public class PncpService {
 
     private void cleanDatabase() {
         contratoRepository.deleteAll();  // Limpa todos os registros da tabela contrato
-        orgaoRepository.deleteAll();     // Limpa todos os registros da tabela orgao
     }
 
 }
