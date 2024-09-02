@@ -1,5 +1,5 @@
 -- Tabela Órgãos
-CREATE TABLE IF NOT EXISTS web.orgao (
+CREATE TABLE IF NOT EXISTS orgao (
     id BIGSERIAL NOT NULL,                -- Chave primária com autoincremento
                                           -- Tamanho: 8 bytes por registro
 

@@ -1,5 +1,5 @@
 -- Tabela Contrato
-CREATE TABLE IF NOT EXISTS web.contrato (
+CREATE TABLE IF NOT EXISTS contrato (
     id BIGSERIAL NOT NULL,               -- Chave primária com autoincremento
                                          -- Tamanho: 8 bytes por registro
 
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS web.contrato (
                                          -- Tamanho: 8 bytes por registro (MONEY)
 
     CONSTRAINT pk_id_contrato PRIMARY KEY (id),
-    CONSTRAINT fk_id_orgao_contrato FOREIGN KEY (id_orgao) REFERENCES web.orgao (id)
+    CONSTRAINT fk_id_orgao_contrato FOREIGN KEY (id_orgao) REFERENCES orgao (id)
 );
 
 -- Estimativa de tamanho total por registro: ~44 bytes
