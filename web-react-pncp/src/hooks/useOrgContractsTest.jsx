@@ -8,7 +8,10 @@ export const useOrgContractsTest = () => {
 
   const searchContracts = async (cnpj) => {
     try {
-      const response = await axios.get(`http://localhost:8080/orgao/findAllByCnpjWithContratos/${cnpj}`);
+
+      const apiURL = process.env.REACT_APP_API_URL;
+
+      const response = await axios.get(`${apiURL}/orgao/findAllByCnpjWithContratos/${cnpj}`);
       const data = response.data;
 
       if (data.length > 0) {

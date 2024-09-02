@@ -8,8 +8,11 @@ export const useOrgContracts = () => {
 
   const searchContracts = async (cnpj, dataIni, dataFim) => {
     try {
+
+      const apiURL = process.env.REACT_APP_API_URL;
+
       // Primeiro, faz a requisição para persistir os dados no banco de dados
-      const persistResponse = await axios.post(`http://localhost:8080/api/v1/pncp/orgao`, {
+      const persistResponse = await axios.post(`${apiURL}/api/v1/pncp/orgao`, {
         cnpj,
         dataInicial: dataIni,
         dataFinal: dataFim,
@@ -18,7 +21,8 @@ export const useOrgContracts = () => {
       // Verifica se o status da resposta de persistência é 200 (sucesso)
       if (persistResponse.status === 200) {
         // Agora faz a requisição para buscar os dados persistidos
-        const fetchResponse = await axios.get(`http://localhost:8080/orgao/findAllByCnpjWithContratos/${cnpj}`);
+
+        const fetchResponse = await axios.get(`${apiURL}/orgao/findAllByCnpjWithContratos/${cnpj}`);
         const data = fetchResponse.data;
 
         if (data.length > 0) {
