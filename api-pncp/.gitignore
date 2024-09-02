@@ -24,9 +24,6 @@ target/
 *.iml
 *.ipr
 
-# Ignorar o arquivo de propriedades do Spring Boot (produzido para produção)
-*application-prod.properties
-
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
