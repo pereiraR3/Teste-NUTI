@@ -64,7 +64,7 @@ public class OrgaoController {
         return ResponseEntity.ok().body(response);
     }
 
-    @CrossOrigin(origins = "https://web-react-pncp-mtrikws6e-anthony-ricardos-projects.vercel.app/")
+    @CrossOrigin(origins = "https://web-react-pncp-pw3vm2x0e-anthony-ricardos-projects.vercel.app/")
     @GetMapping("/findAllByIdWithContratos/{id}")
     @Operation(summary = "Busca um órgão e seus contratos pelo ID", description = "Retorna os dados de um órgão específico pelo ID, juntamente com seus contratos associados")
     @ApiResponses(value = {
@@ -81,7 +81,7 @@ public class OrgaoController {
         return ResponseEntity.ok().body(response);
     }
 
-    @CrossOrigin(origins = "https://web-react-pncp-mtrikws6e-anthony-ricardos-projects.vercel.app/")
+    @CrossOrigin(origins = "https://web-react-pncp-pw3vm2x0e-anthony-ricardos-projects.vercel.app/")
     @GetMapping("/findAllByCnpjWithContratos/{cnpj}")
     @Operation(summary = "Busca um órgão e seus contratos pelo CNPJ",
             description = "Retorna os dados de um órgão específico pelo CNPJ, juntamente com seus contratos associados.")
