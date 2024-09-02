@@ -5,6 +5,7 @@ import com.example.api_pncp.Model.Orgao.Orgao;
 import com.example.api_pncp.Model.PncpResponse;
 import com.example.api_pncp.Repository.ContratoRepository;
 import com.example.api_pncp.Repository.OrgaoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -28,6 +29,15 @@ public class PncpService {
         this.webClient = webClientBuilder.baseUrl("https://pncp.gov.br").build();
     }
 
+    /**
+     * Método feito para realizar a busca pelos dados seguido pela persistência de dados
+     * @param cnpjOrgao
+     * @param dataInicial
+     * @param dataFinal
+     * @return Orgao
+     */
+
+    @Transactional
     public Orgao getOrgaoAndSave(String cnpjOrgao, String dataInicial, String dataFinal) {
 
         // Limpa os registros das tabelas orgao e contrato antes de processar a nova requisição
