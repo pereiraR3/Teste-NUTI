@@ -9,8 +9,6 @@ export const useOrgContractsTest = () => {
   const searchContracts = async (cnpj) => {
     try {
 
-      const apiURL = process.env.REACT_APP_API_URL;
-
       const response = await axios.get(`https://backend-nuti.onrender.com/orgao/findAllByCnpjWithContratos/${cnpj}`);
       const data = response.data;
 

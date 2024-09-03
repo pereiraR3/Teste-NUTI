@@ -14,8 +14,8 @@ const WarningModal = ({ isOpen, onClose }) => {
           Existem dados relacionados aos seguintes CNPJs no banco de dados:
         </p>
         <ul className="list-disc list-inside text-sm text-gray-700 mb-4">
-          <li>15.084.338/0001-46</li>
-          <li>33.004.540/0001-00</li>
+          <li>11.111.111/1111-11</li>
+          <li>00.000.000/0000-00</li>
         </ul>
         <p className="text-sm text-gray-700 mb-4">
           Os dados disponíveis são para o período de 2023-01-01 a 2023-12-31.

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const useOrgContracts = () => {
   const [contracts, setContracts] = useState([]);
@@ -10,11 +11,13 @@ export const useOrgContracts = () => {
     try {
 
       // Primeiro, faz a requisição para persistir os dados no banco de dados
-      const persistResponse = await axios.post(`https://backend-nuti.onrender.com/api/v1/pncp/orgao`, {
-        cnpj,
-        dataInicial: dataIni,
-        dataFinal: dataFim,
-      });
+      const persistResponse = await axios.post(`https://backend-nuti.onrender.com/api/v1/pncp/orgao`, null, {
+        params: {
+            cnpj: cnpj,
+            dataInicial: dataIni,
+            dataFinal: dataFim
+        }
+    });
 
       // Verifica se o status da resposta de persistência é 200 (sucesso)
       if (persistResponse.status === 200) {
@@ -37,6 +40,7 @@ export const useOrgContracts = () => {
           setContracts([]);
           setTotalValue(0);
         }
+
       } else {
         // Caso o status da resposta não seja 200, lança um erro para ser capturado
         throw new Error('Erro ao persistir os dados. Verifique os dados e tente novamente.');
