@@ -68,4 +68,9 @@ public class Orgao {
         this.municipioNome = body.municipioNome();
         this.codigoIbge = body.codigoIbge();
     }
+
+    public void addContratos(List<Contrato> contratos) {
+        this.contratos.addAll(contratos);
+    }
+
 }

@@ -21,7 +21,6 @@ public class PncpController {
     @Autowired
     private PncpService pncpService;
 
-    @CrossOrigin(origins = "https://web-react-pncp-pw3vm2x0e-anthony-ricardos-projects.vercel.app/")
     @PostMapping("/orgao")
     @Operation(summary = "Obtém e salva as informações de um órgão público",
             description = "Busca informações de um órgão público usando o CNPJ e um período específico, e as salva no banco de dados.")
@@ -47,4 +46,5 @@ public class PncpController {
         Orgao orgao = pncpService.getOrgaoAndSave(cnpj, dataInicial, dataFinal);
         return ResponseEntity.ok(orgao);
     }
+
 }

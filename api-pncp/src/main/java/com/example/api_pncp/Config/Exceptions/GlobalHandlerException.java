@@ -37,7 +37,7 @@ public class GlobalHandlerException {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-        logger.error("Validation error: {}", errors);
+        logger.error("Erro de validação: {}", errors);
         return ResponseEntity.badRequest().body(errors);
     }
 
@@ -52,9 +52,9 @@ public class GlobalHandlerException {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Map<String, String>> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
         Map<String, String> error = new HashMap<>();
-        error.put("error", "Malformed JSON request");
-        error.put("message", ex.getLocalizedMessage());
-        logger.error("HTTP message not readable: {}", ex.getMessage());
+        error.put("erro", "Requisição JSON malformada");
+        error.put("mensagem", ex.getLocalizedMessage());
+        logger.error("Mensagem HTTP ilegível: {}", ex.getMessage());
         return ResponseEntity.badRequest().body(error);
     }
 
@@ -69,9 +69,9 @@ public class GlobalHandlerException {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Map<String, String>> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
         Map<String, String> error = new HashMap<>();
-        error.put("error", "Data integrity violation");
-        error.put("message", "The resource you are trying to create already exists.");
-        logger.error("Data integrity violation: {}", ex.getMessage());
+        error.put("erro", "Violação de integridade de dados");
+        error.put("mensagem", "O recurso que você está tentando criar já existe.");
+        logger.error("Violação de integridade de dados: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
 
@@ -86,9 +86,9 @@ public class GlobalHandlerException {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleEntityNotFoundException(EntityNotFoundException ex) {
         Map<String, String> error = new HashMap<>();
-        error.put("error", "Entity not found");
-        error.put("message", ex.getLocalizedMessage());
-        logger.error("Entity not found: {}", ex.getMessage());
+        error.put("erro", "Entidade não encontrada");
+        error.put("mensagem", ex.getLocalizedMessage());
+        logger.error("Entidade não encontrada: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
@@ -103,9 +103,9 @@ public class GlobalHandlerException {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> handleIllegalArgumentException(IllegalArgumentException ex) {
         Map<String, String> error = new HashMap<>();
-        error.put("error", "Illegal argument");
-        error.put("message", ex.getLocalizedMessage());
-        logger.error("Illegal argument: {}", ex.getMessage());
+        error.put("erro", "Argumento ilegal");
+        error.put("mensagem", ex.getLocalizedMessage());
+        logger.error("Argumento ilegal: {}", ex.getMessage());
         return ResponseEntity.badRequest().body(error);
     }
 

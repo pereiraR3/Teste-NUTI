@@ -28,7 +28,6 @@ public record ContratoRequestDTO(
 
         @Schema(description = "Razão social do fornecedor.", example = "Fornecedor ABC Ltda.")
         @NotNull(message = "A razão social do fornecedor é obrigatória.")
-        @Size(max = 255, message = "A razão social do fornecedor não pode ter mais de 255 caracteres.")
         String razaoSocialFornecedor,
 
         @Schema(description = "Descrição do objeto do contrato.", example = "Fornecimento de materiais de escritório.")

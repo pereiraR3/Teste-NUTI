@@ -12,8 +12,8 @@ CREATE TABLE IF NOT EXISTS contrato (
     data_vigencia_fim DATE NOT NULL,     -- Data de fim de vigência do contrato
                                          -- Tamanho: 4 bytes por registro (DATE)
 
-    razao_social_fornecedor VARCHAR(255) NOT NULL,  -- Razão social do fornecedor
-                                                    -- Tamanho: variável (VARCHAR)
+    razao_social_fornecedor TEXT NOT NULL,  -- Razão social do fornecedor
+                                            -- Tamanho: variável (TEXT)
 
     objeto_contrato TEXT NOT NULL,       -- Descrição do objeto do contrato
                                          -- Tamanho: variável (TEXT)
@@ -21,10 +21,11 @@ CREATE TABLE IF NOT EXISTS contrato (
     valor_inicial MONEY NOT NULL,        -- Valor inicial do contrato
                                          -- Tamanho: 8 bytes por registro (MONEY)
 
+
     CONSTRAINT pk_id_contrato PRIMARY KEY (id),
-    CONSTRAINT fk_id_orgao_contrato FOREIGN KEY (id_orgao) REFERENCES orgao (id)
+    CONSTRAINT fk_id_orgao_contrato FOREIGN KEY (id_orgao) REFERENCES orgao (id) ON CASCADE DELETE
 );
 
--- Estimativa de tamanho total por registro: ~44 bytes
+-- Estimativa de tamanho total por registro: ~48 bytes
 -- Considerando 1.000.000 registros:
--- Tamanho total estimado da tabela: ~44 MB
+-- Tamanho total estimado da tabela: ~48 MB

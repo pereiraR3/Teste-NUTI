@@ -13,8 +13,8 @@ public class DatabaseInsertService {
     public void insertOrgaosAndContratos() {
         // Inserção dos órgãos
         String insertOrgaosSql = "INSERT INTO public.orgao (cnpj, razao_social, uf_nome, nome_unidade, codigo_unidade, uf_sigla, municipio_nome, codigo_ibge) VALUES " +
-                "('15084338000146', 'Orgão A', 'São Paulo', 'Unidade A', 'UA001', 'SP', 'São Paulo', '3550308')," +
-                "('33004540000100', 'Orgão B', 'Rio de Janeiro', 'Unidade B', 'UB001', 'RJ', 'Rio de Janeiro', '3304557');";
+                "('11111111111111', 'Orgão A', 'São Paulo', 'Unidade A', 'UA001', 'SP', 'São Paulo', '3550308')," +
+                "('00000000000000', 'Orgão B', 'Rio de Janeiro', 'Unidade B', 'UB001', 'RJ', 'Rio de Janeiro', '3304557');";
 
         jdbcTemplate.execute(insertOrgaosSql);
 

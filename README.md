@@ -154,19 +154,37 @@ A estrutura do banco de dados foi cuidadosamente planejada e implementada utiliz
 
 ## Visual do Website
 
+### Visual Desktop
+
 Aqui estão algumas capturas de tela do website:
 
-### Parte 1:
-![Página 1](fotos_app/web01.png)
+#### Parte 1:
+![Página 1](fotos_app/desktop/web01.png)
 
-### Parte 2:
-![Página 2](fotos_app/web02.png)
+#### Parte 2:
+![Página 2](fotos_app/desktop/web02.png)
 
-### Parte 3:
-![Página 3](fotos_app/web03.png)
+#### Parte 3:
+![Página 3](fotos_app/desktop/web03.png)
 
-### Parte 4:
-![Página 4](fotos_app/web04.png)
+#### Parte 4:
+![Página 4](fotos_app/desktop/web04.png)
+
+#### Parte 5:
+![Página 5](fotos_app/desktop/web05.png)
+
+#### Parte 6:
+![Página 6](fotos_app/desktop/web06.png)
+
+### Visual Mobile
+
+Aqui estão algumas capturas de tela do website:
+
+#### Parte 1:
+![Página 1](fotos_app/desktop/web01.png)
+
+#### Parte 2:
+![Página 2](fotos_app/desktop/web01.png)
 
 # Sobre o Projeto Back-End
 Abaixo está tudo relativo ao Back-End da aplicação, que foi feito para implementar a parte de persistência de dados do teste prático.
@@ -218,7 +236,7 @@ A seguir, são descritas as tabelas do banco de dados e seus respectivos atribut
   - `id_orgao` (BIGINT, NOT NULL): Chave estrangeira que referencia a tabela `orgao`.
   - `data_vigencia_ini` (DATE, NOT NULL): Data de início da vigência do contrato.
   - `data_vigencia_fim` (DATE, NOT NULL): Data de término da vigência do contrato.
-  - `razao_social_fornecedor` (VARCHAR(255), NOT NULL): Razão social do fornecedor.
+  - `razao_social_fornecedor` (TEXT, NOT NULL): Razão social do fornecedor.
   - `objeto_contrato` (TEXT, NOT NULL): Descrição do objeto do contrato.
   - `valor_inicial` (MONEY, NOT NULL): Valor inicial do contrato.
 
@@ -227,11 +245,11 @@ A seguir, são descritas as tabelas do banco de dados e seus respectivos atribut
   - `id_orgao`: 8 bytes.
   - `data_vigencia_ini`: 4 bytes.
   - `data_vigencia_fim`: 4 bytes.
-  - `razao_social_fornecedor`: ~255 bytes.
+  - `razao_social_fornecedor`: Variável (dependendo do texto armazenado).
   - `objeto_contrato`: Variável (dependendo do texto armazenado).
   - `valor_inicial`: 8 bytes.
   - **Tamanho total estimado por registro:** ~44 bytes (excluindo o campo `objeto_contrato`).
-  - **Tamanho total estimado da tabela para 1.000.000 registros:** ~44 MB (excluindo o campo `objeto_contrato`).
+  - **Tamanho total estimado da tabela para 1.000.  000 registros:** ~44 MB (excluindo o campo `objeto_contrato`).
 
 ## Modelagem Lógica
 
@@ -246,8 +264,7 @@ A seguir, são descritas as tabelas do banco de dados e seus respectivos atribut
 CREATE SCHEMA IF NOT EXISTS web;
 
 ---------
-
--- Tabela Órgão
+-- Tabela Órgãos
 CREATE TABLE IF NOT EXISTS orgao (
     id BIGSERIAL NOT NULL,                -- Chave primária com autoincremento
                                           -- Tamanho: 8 bytes por registro
@@ -256,23 +273,23 @@ CREATE TABLE IF NOT EXISTS orgao (
                                           -- Tamanho fixo: 14 bytes por registro (CNPJ possui 14 caracteres)
                                           -- Índice UNIQUE no CNPJ: ~14 bytes adicionais por registro
 
-    razao_social VARCHAR(255) NOT NULL,   -- Razão social do órgão, até 255 caracteres
+    razao_social VARCHAR(255) NOT NULL,   -- Razão social do órgão
                                           -- Tamanho máximo: 255 bytes por registro
 
     uf_nome VARCHAR(100) NOT NULL,        -- Nome da unidade federativa (estado), até 100 caracteres
                                           -- Tamanho máximo: 100 bytes por registro
 
-    nome_unidade VARCHAR(255) NOT NULL,   -- Nome da unidade do órgão, até 255 caracteres
-                                          -- Tamanho máximo: 255 bytes por registro
+    nome_unidade VARCHAR(255) NOT NULL,        -- Nome da unidade do órgão
+                                          -- Tamanho máximo: variável (Varchar)
 
-    codigo_unidade VARCHAR(20) NOT NULL,  -- Código da unidade do órgão, até 20 caracteres
-                                          -- Tamanho máximo: 20 bytes por registro
+    codigo_unidade VARCHAR(20) NOT NULL,     -- Código da unidade do órgão
+                                          -- Tamanho máximo: variável (Varchar)
 
     uf_sigla VARCHAR(2) NOT NULL,         -- Sigla da unidade federativa (estado), 2 caracteres
                                           -- Tamanho fixo: 2 bytes por registro
 
-    municipio_nome VARCHAR(100) NOT NULL, -- Nome do município do órgão, até 100 caracteres
-                                          -- Tamanho máximo: 100 bytes por registro
+    municipio_nome VARCHAR(150) NOT NULL, -- Nome do município do órgão, até 150 caracteres
+                                          -- Tamanho máximo: 150 bytes por registro
 
     codigo_ibge VARCHAR(7) NOT NULL,      -- Código IBGE do município, até 7 caracteres
                                           -- Tamanho máximo: 7 bytes por registro
@@ -300,8 +317,8 @@ CREATE TABLE IF NOT EXISTS contrato (
     data_vigencia_fim DATE NOT NULL,     -- Data de fim de vigência do contrato
                                          -- Tamanho: 4 bytes por registro (DATE)
 
-    razao_social_fornecedor VARCHAR(255) NOT NULL,  -- Razão social do fornecedor
-                                                    -- Tamanho: variável (VARCHAR)
+    razao_social_fornecedor TEXT NOT NULL,  -- Razão social do fornecedor
+                                            -- Tamanho: variável (TEXT)
 
     objeto_contrato TEXT NOT NULL,       -- Descrição do objeto do contrato
                                          -- Tamanho: variável (TEXT)
@@ -310,7 +327,7 @@ CREATE TABLE IF NOT EXISTS contrato (
                                          -- Tamanho: 8 bytes por registro (MONEY)
 
     CONSTRAINT pk_id_contrato PRIMARY KEY (id),
-    CONSTRAINT fk_id_orgao_contrato FOREIGN KEY (id_orgao) REFERENCES orgao (id)
+    CONSTRAINT fk_id_orgao_contrato FOREIGN KEY (id_orgao) REFERENCES orgao (id) ON CASCADE DELETE
 );
 
 -- Estimativa de tamanho total por registro: ~44 bytes

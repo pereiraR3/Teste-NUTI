@@ -1,6 +1,8 @@
 package com.example.api_pncp.Model.Contrato;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.example.api_pncp.Model.Orgao.Orgao;
 import jakarta.persistence.*;
@@ -33,10 +35,10 @@ public class Contrato {
     @Column(name = "data_vigencia_fim", nullable = false)
     private LocalDate dataVigenciaFim;
 
-    @Column(name = "razao_social_fornecedor", nullable = false)
+    @Column(name = "razao_social_fornecedor", nullable = false, columnDefinition = "TEXT")
     private String razaoSocialFornecedor;
 
-    @Column(name = "objeto_contrato", nullable = false)
+    @Column(name = "objeto_contrato", nullable = false, columnDefinition = "TEXT")
     private String objetoContrato;
 
     @Column(name = "valor_inicial", nullable = false)
