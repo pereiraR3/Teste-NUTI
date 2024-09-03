@@ -1,3 +1,22 @@
+# Deploy da Aplicação
+
+## Ferramentas Utilizadas
+
+- **Render**:
+  - **Banco de Dados PostgreSQL**: Configuração e gerenciamento de uma instância do PostgreSQL, oferecendo um banco de dados robusto e escalável para armazenar e gerenciar dados da aplicação.
+  - **WebService para API**: Criação de uma instância dedicada para hospedar e executar a API, garantindo alta disponibilidade e performance para as requisições do backend.
+
+- **Vercel**:
+  - **Deploy do Frontend**: Implementação do projeto frontend desenvolvido com Vite e React, utilizando o ambiente de hospedagem da Vercel, que é otimizado para projetos JavaScript modernos. Com suporte integrado para CI/CD, a Vercel automatiza o processo de deploy, facilitando a entrega contínua e atualizações rápidas da aplicação.
+
+## Links
+
+- **Frontend:**
+  - [https://web-react-pncp-314q5td7l-anthony-ricardos-projects.vercel.app/](https://web-react-pncp-314q5td7l-anthony-ricardos-projects.vercel.app/)
+
+- **Backend:**
+  - [https://backend-nuti.onrender.com/](https://backend-nuti.onrender.com/)
+
 
 # Requisitos Funcionais - Obrigatórios
 
@@ -181,10 +200,19 @@ Aqui estão algumas capturas de tela do website:
 Aqui estão algumas capturas de tela do website:
 
 #### Parte 1:
-![Página 1](fotos_app/desktop/web01.png)
+![Página 1](fotos_app/mobile/mobile01.png)
 
 #### Parte 2:
-![Página 2](fotos_app/desktop/web01.png)
+![Página 2](fotos_app/mobile/mobile02.png)
+
+#### Parte 3:
+![Página 3](fotos_app/mobile/mobile03.png)
+
+#### Parte 4:
+![Página 4](fotos_app/mobile/mobile04.png)
+
+#### Parte 5:
+![Página 5](fotos_app/mobile/mobile05.png)
 
 # Sobre o Projeto Back-End
 Abaixo está tudo relativo ao Back-End da aplicação, que foi feito para implementar a parte de persistência de dados do teste prático.
@@ -336,15 +364,4 @@ CREATE TABLE IF NOT EXISTS contrato (
 
 ---------
 ```
-
-# Deploy da Aplicação
-
-## Ferramentas Utilizadas
-
-- **Render**:
-  - **Banco de Dados PostgreSQL**: Configuração e gerenciamento de uma instância do PostgreSQL, oferecendo um banco de dados robusto e escalável para armazenar e gerenciar dados da aplicação.
-  - **WebService para API**: Criação de uma instância dedicada para hospedar e executar a API, garantindo alta disponibilidade e performance para as requisições do backend.
-
-- **Vercel**:
-  - **Deploy do Frontend**: Implementação do projeto frontend desenvolvido com Vite e React, utilizando o ambiente de hospedagem da Vercel, que é otimizado para projetos JavaScript modernos. Com suporte integrado para CI/CD, a Vercel automatiza o processo de deploy, facilitando a entrega contínua e atualizações rápidas da aplicação.
 
