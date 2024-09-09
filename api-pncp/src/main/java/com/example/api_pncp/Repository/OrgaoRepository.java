@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.api_pncp.Model.Orgao.Orgao;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 public interface OrgaoRepository extends JpaRepository<Orgao, Long>{

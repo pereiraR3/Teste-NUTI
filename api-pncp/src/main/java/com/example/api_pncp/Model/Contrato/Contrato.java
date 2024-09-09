@@ -1,8 +1,6 @@
 package com.example.api_pncp.Model.Contrato;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import com.example.api_pncp.Model.Orgao.Orgao;
 import jakarta.persistence.*;

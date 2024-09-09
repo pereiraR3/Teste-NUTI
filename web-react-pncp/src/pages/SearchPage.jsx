@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/variables.css';
 
 const SearchPage = () => {
+
   const [isTestLocal, setIsTestLocal] = useState(false);  // Estado para o toggle
   const { contracts, orgao, totalValue, searchContracts } = isTestLocal ? useOrgContractsTest() : useOrgContracts(); // Usar o hook correto com base no toggle
   const [searchPerformed, setSearchPerformed] = useState(false);
@@ -49,17 +50,20 @@ const SearchPage = () => {
         handleScrollToSection();    
 
       }
-      
     
     } catch (error) {
+
       setErrorMessage(error.message);
       setIsErrorModalVisible(true);
+
     }
   };
 
   const closeErrorModal = () => {
+
     setIsErrorModalVisible(false);
     setErrorMessage('');
+    
   };
 
   const handleCloseModal = () => {

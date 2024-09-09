@@ -1,45 +1,52 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import '../styles/variables.css';
-import WarningModal from './WarningModal';
+import React, { useState } from 'react'; // Importa React e useState para gerenciamento de estado
+import { toast } from 'react-toastify'; // Importa a biblioteca react-toastify para exibir notificações
+import 'react-toastify/dist/ReactToastify.css'; // Importa os estilos do react-toastify
+import '../styles/variables.css'; // Importa o arquivo CSS para estilos personalizados
+import WarningModal from './WarningModal'; // Importa o componente WarningModal
 
+// Componente OrgSearchForm: Formulário de pesquisa de contratos de um órgão
 const OrgSearchForm = ({ onSearch, setIsTestLocal }) => {
-  const [cnpj, setCnpj] = useState('');
-  const [dataIni, setDataIni] = useState('');
-  const [dataFim, setDataFim] = useState('');
-  const [isTestLocal, setIsTestLocalState] = useState(false);
-  const [isWarningModalOpen, setIsWarningModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Estado para indicar o carregamento
+  // Estados para armazenar os valores do formulário
+  const [cnpj, setCnpj] = useState(''); // Estado para o CNPJ
+  const [dataIni, setDataIni] = useState(''); // Estado para a data de início
+  const [dataFim, setDataFim] = useState(''); // Estado para a data de fim
+  const [isTestLocal, setIsTestLocalState] = useState(false); // Estado para controlar se o modo de teste local está ativado
+  const [isWarningModalOpen, setIsWarningModalOpen] = useState(false); // Estado para controlar a visibilidade do modal de aviso
+  const [isLoading, setIsLoading] = useState(false); // Estado para indicar se o formulário está carregando
 
+  // Função para formatar a entrada de CNPJ
   const handleCNPJInput = (e) => {
-    const value = e.target.value.replace(/\D/g, '');
+    const value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
     const formattedCnpj = value
       .replace(/^(\d{2})(\d)/, '$1.$2')
       .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
       .replace(/\.(\d{3})(\d)/, '.$1/$2')
       .replace(/(\d{4})(\d)/, '$1-$2')
-      .slice(0, 18);
-    setCnpj(formattedCnpj);
+      .slice(0, 18); // Limita o tamanho do CNPJ a 18 caracteres
+    setCnpj(formattedCnpj); // Atualiza o estado do CNPJ
   };
 
+  // Função para alternar o modo de teste local (toggle)
   const handleToggleChange = () => {
-    const newTestLocalState = !isTestLocal;
-    setIsTestLocalState(newTestLocalState);
-    setIsTestLocal(newTestLocalState); // Informa o estado ao SearchPage
+    const newTestLocalState = !isTestLocal; // Alterna o estado de isTestLocal
+    setIsTestLocalState(newTestLocalState); // Atualiza o estado localmente
+    setIsTestLocal(newTestLocalState); // Informa o estado ao componente pai (SearchPage)
     if (newTestLocalState) {
-      setIsWarningModalOpen(true); // Abre o modal quando o toggle é ativado
+      setIsWarningModalOpen(true); // Abre o modal de aviso se o modo de teste local for ativado
     }
   };
 
+  // Função para processar o envio do formulário
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Previne o comportamento padrão do formulário
 
+    // Validações de CNPJ
     if (!cnpj || cnpj.length < 18) {
-      toast.error('Por favor, insira um CNPJ válido.');
+      toast.error('Por favor, insira um CNPJ válido.'); // Exibe uma mensagem de erro se o CNPJ for inválido
       return;
     }
 
+    // Validações para o modo normal (não é o modo de teste local)
     if (!isTestLocal) {
       if (!dataIni) {
         toast.error('Por favor, preencha a data de início.');
@@ -56,17 +63,13 @@ const OrgSearchForm = ({ onSearch, setIsTestLocal }) => {
         return;
       }
 
-      const dataInicial = new Date(dataIni);
-      const dataFinal = new Date(dataFim);
-      const diffTime = Math.abs(dataFinal - dataInicial);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const dataInicial = new Date(dataIni); // Converte a data de início para um objeto Date
+      const dataFinal = new Date(dataFim); // Converte a data de fim para um objeto Date
+      const diffTime = Math.abs(dataFinal - dataInicial); // Calcula a diferença de tempo entre as datas
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Converte a diferença para dias
 
       if (dataFinal - dataInicial < 0) {
         toast.error('Por favor, a data de fim deve ser após a data de início.');
-        return;
-
-      } else if (dataInicial - dataFim < 0) {
-        toast.error('Por favor, a data de início deve ser antes da data de fim.');
         return;
       }
 
@@ -76,22 +79,23 @@ const OrgSearchForm = ({ onSearch, setIsTestLocal }) => {
       }
     }
 
-    setIsLoading(true); // Inicia o carregamento
+    setIsLoading(true); // Define o estado de carregamento para verdadeiro
 
     try {
-      const formattedCnpj = cnpj.replace(/\D/g, '');
-      const formattedDataIni = dataIni.replace(/-/g, '');
-      const formattedDataFim = dataFim.replace(/-/g, '');
+      const formattedCnpj = cnpj.replace(/\D/g, ''); // Remove caracteres não numéricos do CNPJ
+      const formattedDataIni = dataIni.replace(/-/g, ''); // Formata a data de início
+      const formattedDataFim = dataFim.replace(/-/g, ''); // Formata a data de fim
 
+      // Chama a função de busca dependendo se o modo de teste local está ativado
       if (isTestLocal) {
-        await onSearch(formattedCnpj);
+        await onSearch(formattedCnpj); // Executa a busca no modo de teste local
       } else {
-        await onSearch(formattedCnpj, formattedDataIni, formattedDataFim);
+        await onSearch(formattedCnpj, formattedDataIni, formattedDataFim); // Executa a busca no modo normal
       }
     } catch (error) {
       toast.error('Ocorreu um erro durante a pesquisa. Tente novamente.');
     } finally {
-      setIsLoading(false); // Termina o carregamento
+      setIsLoading(false); // Define o estado de carregamento para falso
     }
   };
 
@@ -101,7 +105,7 @@ const OrgSearchForm = ({ onSearch, setIsTestLocal }) => {
       className="relative flex flex-col items-center justify-center p-10"
       style={{ width: '100%', minHeight: '10vh' }}
     >
-      {/* Warning Modal */}
+      {/* Modal de Aviso */}
       <WarningModal isOpen={isWarningModalOpen} onClose={() => setIsWarningModalOpen(false)} />
 
       {/* Título e Formulário */}
@@ -134,6 +138,7 @@ const OrgSearchForm = ({ onSearch, setIsTestLocal }) => {
             />
           </div>
 
+          {/* Campos de data visíveis apenas quando não estiver no modo de teste local */}
           {!isTestLocal && (
             <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
               <div className="flex-1">
@@ -162,11 +167,12 @@ const OrgSearchForm = ({ onSearch, setIsTestLocal }) => {
             </div>
           )}
 
+          {/* Botão de submissão do formulário */}
           <button
             type="submit"
             className={`w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center 
               ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'}`}
-            disabled={isLoading} // Desativa o botão durante o carregamento
+            disabled={isLoading} // Desativa o botão enquanto o carregamento estiver ativo
           >
             {isLoading ? 'Carregando...' : 'Realizar Pesquisa'}
           </button>
@@ -176,4 +182,4 @@ const OrgSearchForm = ({ onSearch, setIsTestLocal }) => {
   );
 };
 
-export default OrgSearchForm;
+export default OrgSearchForm; // Exporta o componente

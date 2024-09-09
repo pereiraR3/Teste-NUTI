@@ -8,7 +8,6 @@ import com.example.api_pncp.Model.Contrato.ContratoRequestDTO;
 import com.example.api_pncp.Model.Contrato.ContratoResponseDTO;
 import com.example.api_pncp.Model.Orgao.Orgao;
 import com.example.api_pncp.Repository.ContratoRepository;
-import com.example.api_pncp.Service.OrgaoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -13,6 +13,7 @@ export const useOrgContractsTest = () => {
       const data = response.data;
 
       if (data.length > 0) {
+
         const orgao = data[0]; // A lista retornada contém o órgão e seus contratos.
         setOrgao(orgao.orgaoResponseDTO);
         setContracts(orgao.contratoResponseDTOList);
@@ -20,6 +21,7 @@ export const useOrgContractsTest = () => {
         // Calcula o valor total dos contratos
         const total = orgao.contratoResponseDTOList.reduce((acc, contract) => acc + contract.valorInicial, 0);
         setTotalValue(total);
+        
       } else {
         setOrgao(null);
         setContracts([]);
