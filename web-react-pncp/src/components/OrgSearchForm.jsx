@@ -117,6 +117,21 @@ const OrgSearchForm = ({ onSearch, setIsTestLocal }) => {
       </div>
 
       <div className="relative w-full max-w-2xl p-8 bg-white border border-blue-300 rounded-lg shadow-lg mt-6 mb-8">
+
+       {/* Toggle para Teste Local */}
+       <div className="absolute top-2 right-2 flex items-center">
+          <span className="text-sm font-medium text-blue-700 mr-2">Teste Local</span>
+          <label className="inline-flex relative items-center cursor-pointer">
+            <input
+              type="checkbox"
+              className="sr-only peer"
+              checked={isTestLocal}
+              onChange={handleToggleChange}
+            />
+            <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+          </label>
+        </div>
+
         <form className="space-y-6" onSubmit={handleSubmit}>
           <h2 className="text-2xl font-semibold text-blue-700 text-center">
             Consulta de Contratos por Órgão

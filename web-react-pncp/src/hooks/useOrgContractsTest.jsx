@@ -9,7 +9,7 @@ export const useOrgContractsTest = () => {
   const searchContracts = async (cnpj) => {
     try {
 
-      const response = await axios.get(`https://backend-nuti.onrender.com/orgao/findAllByCnpjWithContratos/${cnpj}`);
+      const response = await axios.get(`http://localhost:8080/orgao/findAllByCnpjWithContratos/${cnpj}`);
       const data = response.data;
 
       if (data.length > 0) {

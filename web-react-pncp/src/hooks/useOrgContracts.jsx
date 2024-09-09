@@ -24,7 +24,7 @@ export const useOrgContracts = () => {
     try {
 
       // Requisição POST para persistir os dados no banco de dados, passando os parâmetros CNPJ e datas
-      const persistResponse = await axios.post(`https://backend-nuti.onrender.com/api/v1/pncp/orgao`, null, {
+      const persistResponse = await axios.post(`http://localhost:8080/v1/pncp/orgao`, null, {
         params: {
             cnpj: cnpj,
             dataInicial: dataIni,
@@ -35,7 +35,7 @@ export const useOrgContracts = () => {
       // Verifica se a resposta de persistência foi bem-sucedida (status 200)
       if (persistResponse.status === 200) {
         // Se a persistência for bem-sucedida, faz uma segunda requisição para buscar os contratos persistidos
-        const fetchResponse = await axios.get(`https://backend-nuti.onrender.com/orgao/findAllByCnpjWithContratos/${cnpj}`);
+        const fetchResponse = await axios.get(`http://localhost:8080/orgao/findAllByCnpjWithContratos/${cnpj}`);
         const data = fetchResponse.data;
 
         // Verifica se há dados retornados
