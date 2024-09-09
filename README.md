@@ -12,7 +12,7 @@
 ## Links
 
 - **Frontend:**
-  - [https://web-react-pncp-314q5td7l-anthony-ricardos-projects.vercel.app/](https://web-react-pncp-314q5td7l-anthony-ricardos-projects.vercel.app/)
+  - [https://teste-nuti.vercel.app/](https://teste-nuti.vercel.app/)
 
 - **Backend:**
   - [https://backend-nuti.onrender.com/](https://backend-nuti.onrender.com/)
