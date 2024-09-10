@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
-@RequestMapping("/api/v1/pncp")
+@RequestMapping("api/v1/pncp")
 @Tag(name = "PNCP", description = "Endpoints para interagir com o Portal Nacional de Contratações Públicas (PNCP)")
 public class PncpController {
 

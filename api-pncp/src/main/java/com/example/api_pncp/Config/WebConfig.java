@@ -12,7 +12,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(
                         "https://teste-nuti.vercel.app/",
-                        "http://localhost:5174/" // Permite qualquer porta no localhost
+                        "http://localhost:5173", // Adicionando a origem localhost:5173
+                        "http://localhost:5174"  // Permite localhost com porta 5174
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")

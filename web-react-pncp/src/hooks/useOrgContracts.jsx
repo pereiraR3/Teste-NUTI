@@ -24,7 +24,7 @@ export const useOrgContracts = () => {
     try {
 
       // Requisição POST para persistir os dados no banco de dados, passando os parâmetros CNPJ e datas
-      const persistResponse = await axios.post(`http://localhost:8080/v1/pncp/orgao`, null, {
+      const persistResponse = await axios.post(`http://localhost:8080/api/v1/pncp/orgao`, null, {
         params: {
             cnpj: cnpj,
             dataInicial: dataIni,
