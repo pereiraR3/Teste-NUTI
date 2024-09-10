@@ -40,10 +40,10 @@ public class PncpService {
 
         // Realiza a requisição à API
         PncpResponse response = this.webClient.get()
-                .uri(uri)
-                .retrieve()
-                .bodyToMono(PncpResponse.class)
-                .block(); // Operação síncrona
+                .uri(uri)                                // Define o URI do endpoint a ser chamado
+                .retrieve()                              // Envia a requisição e recupera a resposta
+                .bodyToMono(PncpResponse.class)          // Converte o corpo da resposta para um Mono de PncpResponse
+                .block();                                // Converte a operação assíncrona em síncrona, esperando a resposta
 
         // Verifica se a resposta é nula ou se não há contratos
         if (response == null || response.getData() == null || response.getData().isEmpty()) {
@@ -57,8 +57,6 @@ public class PncpService {
         // Verifica se o órgão já existe no banco de dados
         Optional<Orgao> orgaoOptional = orgaoRepository.findByCnpj(orgaoEntidade.getCnpj());
         Orgao orgao;
-
-        Boolean flag = false;
 
         if (orgaoOptional.isEmpty()) {
 
